@@ -3,12 +3,13 @@ package ru.samsung.gamestudio;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 
+
 public class DesktopLauncher {
 	public static void main(String[] arg) {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setForegroundFPS(60);
-		config.setWindowedMode(1280, 720);
-		config.setTitle("FlappyBird");
+		config.setWindowedMode(MyGdxGame.SCR_WIDTH, MyGdxGame.SCR_HEIGHT);
+		config.setTitle("Flappy Bird");
 		new Lwjgl3Application(new MyGdxGame(), config);
 	}
 }
