@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import ru.samsung.gamestudio.MyGdxGame;
 
 public class Bird {
-    public boolean isGameOver;
     public float x;
     public float y;
     public float width;
@@ -17,10 +16,10 @@ public class Bird {
     int frameCounter;
     Texture[] frames;
 
-    public Bird(float x, float y, float speed, float width, float height) {
+    public Bird(float x, float y, float width, float height) {
         this.x = x;
         this.y = y;
-        this.speed = speed = 5;
+        this.speed = 5;
         this.width = width;
         this.height = height;
         frameCounter = 0;
@@ -64,9 +63,6 @@ public class Bird {
     public boolean isOutOfScreen() {
         if (y + height < 0) return true;
         if (y > MyGdxGame.SCR_HEIGHT) return true;
-        return false;
-    }
-    public boolean needAddPoint(Bird bird) {
         return false;
     }
 }

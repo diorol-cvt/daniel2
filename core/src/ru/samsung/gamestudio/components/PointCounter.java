@@ -9,7 +9,7 @@ public class PointCounter {
     int x;
     int y;
     BitmapFont font;
-    int points = 0;
+
     public PointCounter(int x, int y) {
         this.x = x;
         this.y = y;

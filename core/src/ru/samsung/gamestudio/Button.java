@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class Buton {
+public class Button {
     BitmapFont font;
     String text;
     Texture texture;
@@ -15,25 +15,7 @@ public class Buton {
     int buttonWidth, buttonHeight;
     int textWidth, textHeight;
 
-    public Buton(int x, int y, String text) {
-        this.text = text;
-        this.x = x;
-        this.y = y;
-        font = new BitmapFont();
-        font.getData().scale(5f);
-        font.setColor(Color.WHITE);
-        GlyphLayout gl = new GlyphLayout(font, text);
-        textWidth = (int) gl.width;
-        textHeight = (int) gl.height;
-        texture = new Texture("button/button_bg.png");
-        buttonWidth = texture.getWidth();
-        buttonHeight = texture.getHeight();
-        textX = x + (buttonWidth - textWidth) / 2;
-        textY = y + (buttonHeight + textHeight) / 2;
-    }
-
-
-    public Buton(int x, int y, int width, int height, String text) {
+    public Button(int x, int y, int width, int height, String text) {
         this.text = text;
         this.x = x;
         this.y = y;

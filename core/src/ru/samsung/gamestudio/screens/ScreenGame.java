@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.utils.ScreenUtils;
-import ru.samsung.gamestudio.Buton;
+import ru.samsung.gamestudio.Button;
 import ru.samsung.gamestudio.MyGdxGame;
 import ru.samsung.gamestudio.characners.Bird;
 import ru.samsung.gamestudio.characners.Tube;
@@ -25,13 +25,11 @@ public class ScreenGame implements Screen {
     MovingBackground bg;
     PointCounter pointCounter;
     BitmapFont font;
-    Buton menuButton;
+    Button menuButton;
 
     public int gamePoints;
     public boolean isGameOver = false;
     int lives = 1;
-    int nextLifeAt = 10;
-
     public ScreenGame(MyGdxGame game) {
         this.game = game;
         initGame();
@@ -39,11 +37,11 @@ public class ScreenGame implements Screen {
         bg = new MovingBackground();
         font = new BitmapFont();
         font.getData().setScale(4f);
-        menuButton = new Buton(SCR_WIDTH - 200, SCR_HEIGHT - 100, 180, 70, "MENU");
+        menuButton = new Button(SCR_WIDTH - 200, SCR_HEIGHT - 100, 180, 70, "MENU");
     }
 
     public void initGame() {
-        bird = new Bird(200, 300, 10, 93, 82);
+        bird = new Bird(200, 300, 93, 82);
         initTubes();
     }
 
@@ -65,9 +63,7 @@ public class ScreenGame implements Screen {
 
             if (menuButton.isHit((int) tx, (int) realY)) {
                 game.setScreen(game.resumeScreen);
-                return;
             }
-
 
             if (!isGameOver) {
                 bird.onClick();
@@ -77,7 +73,6 @@ public class ScreenGame implements Screen {
         if (isGameOver) {
             game.screenRestart = new ScreenRestart(game, gamePoints);
             game.setScreen(game.screenRestart);
-            return;
         }
 
 
@@ -91,7 +86,7 @@ public class ScreenGame implements Screen {
                 if (lives <= 0) {
                     isGameOver = true;
                 } else {
-                    bird = new Bird(200, 300, 10, 100, 100);
+                    bird = new Bird(200, 300, 100, 100);
                     initTubes();
                 }
                 break;

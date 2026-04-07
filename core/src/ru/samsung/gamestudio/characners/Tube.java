@@ -2,7 +2,6 @@ package ru.samsung.gamestudio.characners;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import ru.samsung.gamestudio.characners.Bird;
 
 import java.util.Random;
 
@@ -45,8 +44,8 @@ public class Tube {
     }
 
     public void draw(Batch batch) {
-        batch.draw(top, x, gapY + gapHeight / 2, width, height);
-        batch.draw(bottom, x, gapY - gapHeight / 2 - height, width, height);
+        batch.draw(top, x, gapY + (float) gapHeight / 2, width, height);
+        batch.draw(bottom, x, gapY - (float) gapHeight / 2 - height, width, height);
     }
 
     public void dispose() {
@@ -54,11 +53,11 @@ public class Tube {
         bottom.dispose();
     }
     public boolean isHit(Bird bird) {
-        if (bird.y <= gapY - gapHeight / 2 && bird.x + bird.width >= x && bird.x <= x + width) {
+        if (bird.y <= gapY - (float) gapHeight / 2 && bird.x + bird.width >= x && bird.x <= x + width) {
             return true;
         }
 
-        if (bird.y + bird.height >= gapY + gapHeight / 2 && bird.x + bird.width >= x && bird.x <= x + width) {
+        if (bird.y + bird.height >= gapY + (float) gapHeight / 2 && bird.x + bird.width >= x && bird.x <= x + width) {
             return true;
         }
 
