@@ -8,55 +8,46 @@ import ru.samsung.gamestudio.Button;
 import ru.samsung.gamestudio.MyGdxGame;
 import ru.samsung.gamestudio.components.MovingBackground;
 
-public class MenuScreen implements Screen {
+public class SkinsScreen implements Screen {
     private final MovingBackground background;
-    private final Button buttonSkins;
-    private final Button buttonStart;
+    private final Button buttonResume;
     private final Button buttonExit;
     MyGdxGame myGdxGame;
-
-    public MenuScreen(MyGdxGame myGdxGame) {
+    public SkinsScreen(MyGdxGame myGdxGame) {
         this.myGdxGame = myGdxGame;
-        buttonSkins = new Button(500, 200, 300, 120, "SKINS");
-        buttonStart = new Button(867, 167, 300, 120, "START");
-        buttonExit = new Button(150, 167, 300, 120, "EXIT");
+        buttonResume = new Button(867, 400, 300, 110, "RESUME");
+        buttonExit = new Button(150, 400, 400, 110, "EXIT MENU");
         background = new MovingBackground("background/restart_bg.png");
     }
 
     @Override
     public void render(float delta) {
         if (Gdx.input.isTouched()) {
-            Vector3 touch;
-            touch = myGdxGame.camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
-            if (buttonStart.isHit((int) touch.x, (int) touch.y)) {
-                myGdxGame.screenGame = new ScreenGame(myGdxGame);
+            Vector3 touch = myGdxGame.camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
+            if (buttonResume.isHit((int) touch.x, (int) touch.y)) {
                 myGdxGame.setScreen(myGdxGame.screenGame);
             }
             if (buttonExit.isHit((int) touch.x, (int) touch.y)) {
-                Gdx.app.exit();
-            }
-            if (buttonSkins.isHit((int) touch.x, (int) touch.y)) {
-                myGdxGame.skinScreen = new SkinsScreen(myGdxGame);
-                myGdxGame.setScreen(myGdxGame.skinScreen);
+                myGdxGame.menuScreen = new MenuScreen(myGdxGame);
+                myGdxGame.setScreen(myGdxGame.menuScreen);
             }
         }
+
         ScreenUtils.clear(1, 0, 0, 1);
         myGdxGame.camera.update();
         myGdxGame.batch.setProjectionMatrix(myGdxGame.camera.combined);
         myGdxGame.batch.begin();
         background.draw(myGdxGame.batch);
-        buttonStart.draw(myGdxGame.batch);
+        buttonResume.draw(myGdxGame.batch);
         buttonExit.draw(myGdxGame.batch);
-        buttonSkins.draw(myGdxGame.batch);
         myGdxGame.batch.end();
     }
 
     @Override
     public void dispose() {
         background.dispose();
-        buttonStart.dispose();
+        buttonResume.dispose();
         buttonExit.dispose();
-        buttonSkins.dispose();
     }
 
     @Override public void show() {
