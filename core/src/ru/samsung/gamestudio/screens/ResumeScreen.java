@@ -2,6 +2,7 @@ package ru.samsung.gamestudio.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
 import ru.samsung.gamestudio.Button;
@@ -12,12 +13,17 @@ public class ResumeScreen implements Screen {
     private final MovingBackground background;
     private final Button buttonResume;
     private final Button buttonExit;
+    private final BitmapFont font;
+    private final int lastScore;
     MyGdxGame myGdxGame;
-    public ResumeScreen(MyGdxGame myGdxGame) {
+    public ResumeScreen(MyGdxGame myGdxGame, int score) {
         this.myGdxGame = myGdxGame;
-        buttonResume = new Button(867, 400, 300, 110, "RESUME");
-        buttonExit = new Button(150, 400, 400, 110, "EXIT MENU");
+        this.lastScore = score;
+        buttonResume = new Button(867, 300, 300, 110, "RESUME");
+        buttonExit = new Button(100, 300, 400, 110, "EXIT MENU");
         background = new MovingBackground("background/restart_bg.png");
+        font = new BitmapFont();
+        font.getData().setScale(6f);
     }
 
     @Override
@@ -26,10 +32,12 @@ public class ResumeScreen implements Screen {
             Vector3 touch = myGdxGame.camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
             if (buttonResume.isHit((int) touch.x, (int) touch.y)) {
                 myGdxGame.setScreen(myGdxGame.screenGame);
+                return;
             }
             if (buttonExit.isHit((int) touch.x, (int) touch.y)) {
                 myGdxGame.menuScreen = new MenuScreen(myGdxGame);
                 myGdxGame.setScreen(myGdxGame.menuScreen);
+                return;
             }
         }
 
@@ -40,6 +48,7 @@ public class ResumeScreen implements Screen {
         background.draw(myGdxGame.batch);
         buttonResume.draw(myGdxGame.batch);
         buttonExit.draw(myGdxGame.batch);
+        font.draw(myGdxGame.batch, "", MyGdxGame.SCR_WIDTH / 2f - 167, MyGdxGame.SCR_HEIGHT - 150);
         myGdxGame.batch.end();
     }
 

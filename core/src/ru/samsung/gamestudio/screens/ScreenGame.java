@@ -29,7 +29,6 @@ public class ScreenGame implements Screen {
 
     public int gamePoints;
     public boolean isGameOver = false;
-    int lives = 1;
     public ScreenGame(MyGdxGame game) {
         this.game = game;
         initGame();
@@ -41,7 +40,7 @@ public class ScreenGame implements Screen {
     }
 
     public void initGame() {
-        bird = new Bird(200, 300, 93, 82);
+        bird = SkinsScreen.bird;
         initTubes();
     }
 
@@ -82,17 +81,13 @@ public class ScreenGame implements Screen {
 
         for (Tube t : tubes) {
             if (t.isHit(bird)) {
-                lives--;
-                if (lives <= 0) {
-                    isGameOver = true;
-                } else {
-                    bird = new Bird(200, 300, 100, 100);
-                    initTubes();
-                }
+                isGameOver = true;
                 break;
-            } else if (t.needAddPoint(bird)) {
-                gamePoints++;
-                t.setPointReceived();
+            } else {
+                if (t.needAddPoint(bird)) {
+                    gamePoints++;
+                    t.setPointReceived();
+                }
             }
         }
         if (bird.isOutOfScreen()) isGameOver = true;

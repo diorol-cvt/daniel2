@@ -3,6 +3,7 @@ package ru.samsung.gamestudio.characners;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import ru.samsung.gamestudio.MyGdxGame;
+import ru.samsung.gamestudio.screens.SkinsScreen;
 
 public class Bird {
     public float x;
@@ -14,7 +15,7 @@ public class Bird {
     final float maxHeightOfJump = 100;
     boolean jump;
     int frameCounter;
-    Texture[] frames;
+    public Texture[] frames;
 
     public Bird(float x, float y, float width, float height) {
         this.x = x;
@@ -23,12 +24,7 @@ public class Bird {
         this.width = width;
         this.height = height;
         frameCounter = 0;
-        frames = new Texture[] {
-                new Texture("kolibri/kolibri0.png"),
-                new Texture("kolibri/kolibri1.png"),
-                new Texture("kolibri/kolibri2.png"),
-                new Texture("kolibri/kolibri1.png"),
-        };
+        frames = SkinsScreen.frames;
     }
 
     public void onClick() {
@@ -52,7 +48,7 @@ public class Bird {
 
     public void draw(Batch batch) {
 
-        int frameIndex = (frameCounter * 9) % frames.length;
+        int frameIndex = (int) ((frameCounter * SkinsScreen.n) % frames.length);
         batch.draw(frames[frameIndex], x, y, width, height);
         frameCounter++;
     }
@@ -61,8 +57,7 @@ public class Bird {
         for (Texture t : frames) t.dispose();
     }
     public boolean isOutOfScreen() {
-        if (y + height < 0) return true;
-        if (y > MyGdxGame.SCR_HEIGHT) return true;
+        if (y + height < 0 || y > MyGdxGame.SCR_HEIGHT) {return true;}
         return false;
     }
 }

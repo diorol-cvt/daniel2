@@ -20,8 +20,8 @@ public class ScreenRestart implements Screen {
     public ScreenRestart(MyGdxGame myGdxGame, int score) {
         this.myGdxGame = myGdxGame;
         this.lastScore = score;
-        buttonRestart = new Button(867, 100, 300, 110, "RESTART");
-        buttonExit = new Button(100, 100, 400, 110, "EXIT MENU");
+        buttonRestart = new Button(867, 300, 300, 110, "RESTART");
+        buttonExit = new Button(100, 300, 400, 110, "EXIT MENU");
         background = new MovingBackground("background/restart_bg.png");
         font = new BitmapFont();
         font.getData().setScale(6f);

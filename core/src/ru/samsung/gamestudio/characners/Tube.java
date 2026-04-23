@@ -56,11 +56,9 @@ public class Tube {
         if (bird.y <= gapY - (float) gapHeight / 2 && bird.x + bird.width >= x && bird.x <= x + width) {
             return true;
         }
-
         if (bird.y + bird.height >= gapY + (float) gapHeight / 2 && bird.x + bird.width >= x && bird.x <= x + width) {
             return true;
         }
-
         return false;
     }
     boolean isPointReceived = false;

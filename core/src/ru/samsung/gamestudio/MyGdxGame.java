@@ -17,13 +17,13 @@ public class MyGdxGame extends Game {
 	public ScreenRestart screenRestart;
 	public SkinsScreen skinScreen;
 
-	@Override
+    @Override
 	public void create() {
 		batch = new SpriteBatch();
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, SCR_WIDTH, SCR_HEIGHT);
 		menuScreen = new MenuScreen(this);
-		resumeScreen = new ResumeScreen(this);
+		resumeScreen = new ResumeScreen(this, 0);
 		screenGame = new ScreenGame(this);
 		screenRestart = new ScreenRestart(this, 0);
 		setScreen(menuScreen);
